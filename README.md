@@ -372,3 +372,95 @@ public static void main (String[] args){
   Al invocar un método, las variables de tipo primitivo, se invocan por copia.
   Los objetos (arreglos, clases, etc.) se envían como una referencia a su ubicación en
   memoria, por tanto si se modifican dentro del método, se modificará las variables que apunten a la misma referencia.
+  
+
+### Recursividad:
+
+ Se encuentra compuesto por dos partes:
+  
+  * Casos base (triviales)
+         
+         * Casos donde se puede obtener una solución directa (sin necesidad de un llamado recursivo)
+         * Los métodos pueden tener uno o más
+         * Son los encargados de detener el ciclo creado por la recursividad
+  * Casos recursivos
+  
+         * Son los casos en donde no se puede obtener una solución directa
+         * Llaman de nuevo al mismo método cambiando los parámetros del mismo
+         * El objetivo es llegar hasta un caso trivial dados los valores de los parámetros
+  
+  Ejemplo Sumatoria (con un llamado recursivo)
+  
+```java
+   // Calcula de forma recursiva una sumatoria de un valor n
+   // Los métodos recursivos están compuestos de casos base (triviales) y casos recursivos
+   // El caso trivial es el más sencillo, del cual se puede derivar una respuesta directa
+   // En el caso de la sumatoria, sabemos que el caso base es 0, en donde podemos obtener 
+   // directamente el resultado sin realizar cálculos.
+   // El caso recursivo busca reducir el espacio del problema hasta llegar al caso base
+   // En este caso nuestro caso recursivo será tomar n y calcular la sumatoria de su n-1
+   // El resultado es asignado a una variable y retornado 
+   // En este ejemplo, si el parámetro recibio es menor a 0, el método retornará 0
+   public int calcularSumatoria(int n){
+      int resultado = 0;
+      if (n <= 0){ // Caso base
+         resultado = 0;
+      }
+      else{ // Caso recursivo
+         resultado = n + calcularSumatoria(n-1);
+      }
+      return resultado;
+   }
+```
+
+
+### Matrices
+
+Ejemplos vistos en clase:
+
+Declaración, inicialización y asignación
+```java
+  int  [][] matriz1 = new int [3][5];
+  // 0 0 0 0 0
+  // 0 0 0 0 0 
+  // 0 0 0 0 0 
+
+  matriz1[0][2] = 12;
+  // 0 0 12 0 0
+  // 0 0 0  0 0 
+  // 0 0 0  0 0 
+```
+
+Declaración e inicialización por extensión:
+
+```java
+int [][]matriz2 = {
+  {1,2},
+  {3,4}, 
+  {5,6}
+};
+```
+
+Declaración línea por línea
+```java
+  int [][] matriz3 = new int [5][];
+  matriz3[0] = new int [4];
+  matriz3[1] = new int [8];
+  matriz3[2] = new int [5];
+  matriz3[3] = new int [6];
+  matriz3[4] = new int [2];
+```
+
+Impresión:
+
+```java
+public void imprimir(int [][] matriz){
+  for (int  f = 0 ; f < matriz.length ; f++){
+    for (int c = 0 ; matriz[f] != null && c < matriz[f].length; c++){
+      System.out.print(matriz[f][c] + "\t");
+    }
+    System.out.println();
+  }
+}
+```
+
