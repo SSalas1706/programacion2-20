@@ -1,4 +1,7 @@
-public class Carta{
+// Este es un comentario hecho con nuestra interfaz
+import java.io.Serializable;
+
+public class Carta implements Serializable{
 	// Atributos
  
 	// Para definir un tipo de dato:
@@ -43,6 +46,12 @@ public class Carta{
 		String contenidoDeLaCarta = "La carta es: ";
 		contenidoDeLaCarta = contenidoDeLaCarta + convertirNumeroALetra() + " de " + simbolo;
 		System.out.println(contenidoDeLaCarta);
+	}
+
+	public String toString(){
+		String contenidoDeLaCarta = "La carta es: ";
+		contenidoDeLaCarta = contenidoDeLaCarta + convertirNumeroALetra() + " de " + simbolo;
+		return contenidoDeLaCarta;
 	}
 
 	public String convertirNumeroALetra(){

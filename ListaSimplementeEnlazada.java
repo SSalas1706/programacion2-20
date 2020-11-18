@@ -20,6 +20,10 @@ public class ListaSimplementeEnlazada{
 		this.primero = null;
 	}
 
+	public Nodo getPrimerElemento(){
+		return this.primero;
+	}
+
 	public void agregarAlInicio(int elemento){
 		Nodo nuevo = new Nodo(elemento);
 		Nodo primeroViejo = this.primero;

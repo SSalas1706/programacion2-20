@@ -25,6 +25,8 @@ public class ArbolBinario{
 		return insertar(elemento, this.raiz);
 	}
 
+
+
 	private Nodo insertar(int elemento, Nodo nodo){
 		Nodo nodoNuevo = nodo;
 		if(nodo == null){
@@ -45,6 +47,67 @@ public class ArbolBinario{
 			}
 		}
 		return nodoNuevo;
+	}
+
+	public void borrar(int elemento){
+		this.borrar(elemento, this.raiz);
+	}
+
+	private Nodo borrar(int elemento, Nodo nodo){
+		Nodo retorno = null;
+		if(nodo != null){
+			if (nodo.elemento > elemento){
+				nodo.izq = borrar(elemento, nodo.izq);
+			}
+			else if(nodo.elemento < elemento) {
+				nodo.der = borrar(elemento, nodo.der);
+			}
+			else{
+				// encontramos el nodo! :D 
+				if (nodo.izq == null){
+					nodo = nodo.der;
+				}
+				else if (nodo.der == null){
+					nodo = nodo.izq;
+				}
+				else{
+					nodo.elemento = valorMenor(nodo.der);
+					nodo.der = borrar(nodo.elemento, nodo.der);
+					retorno = nodo;
+				}
+			}
+			retorno = nodo;
+		}
+		return retorno;	
+	}
+
+	public int valorMenor(Nodo nodo){
+		int menor = nodo.elemento;
+		while(nodo.izq != null){
+			menor = nodo.izq.elemento;
+			nodo = nodo.izq;
+		}
+		return menor;
+	}
+
+	public Nodo buscar(int elemento){
+		return buscar(elemento, this.raiz);
+	}
+
+	private Nodo buscar (int elemento, Nodo nodo){
+		Nodo retorno = null;
+		if (nodo != null){
+			if(elemento == nodo.elemento){
+				retorno = nodo;
+			}
+			else if (nodo.elemento > elemento){
+				retorno = buscar(elemento, nodo.izq);
+			}
+			else{
+				retorno = buscar(elemento, nodo.der);
+			}
+		}
+		return retorno;
 	}
 
 	public void imprimir(){
@@ -94,6 +157,8 @@ public class ArbolBinario{
 		return (profundidadIzq > profundidadDer ? profundidadIzq : profundidadDer) + 1;
 	}
 
+
+
 	public static void main (String args [] ){
 		ArbolBinario ab = new ArbolBinario();
 		ab.insertar(25);
@@ -112,8 +177,13 @@ public class ArbolBinario{
 
 		System.out.println("Length");
 		System.out.println(ab.getLength());
-
+		System.out.println("Profundidad");
 		System.out.println(ab.getProfundidad());
+
+		System.out.println("Borrado 18");
+		ab.borrar(18);
+		ab.imprimir();
+
 	}
 
 
